@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Login Please
+        </title>
+    </head>
+    <body>
+
+        <h1>
+            Login
+        </h1>
+        <br>
+        {% if message %}
+        <div>
+            {{message}}
+        </div>
+        {% endif %}
+        
+        <form action="{%url 'login' %}" method="POST">
+            {% csrf_token %}
+            Username: <input type="text" name="username"><br>
+            Password: <input type="password" name ="password">
+            <br>
+            <br>
+            <input type="submit" value="login">
+
+
+            
+
+        </form>
+    </body>
+</html>
