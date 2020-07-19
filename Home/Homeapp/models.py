@@ -7,4 +7,5 @@ class Message(models.Model):
 
     def ___str__(self):
         return f"{self.message_text} by {self.sender}"
+       
         

@@ -4,11 +4,42 @@
         <title>
             Message page
         </title>
+        <script>
+            document.addEventListener('DOMContentLoaded',()=>{
+                fetch('/main/getMessage')
+                .then(response=>response.json())
+                .then(data=>{
+                    data.d_messages.forEach(add_messages);
+
+                })
+            });
+            function add_messages(contents){
+                const post  = document.createElement('div');
+                post.innerHTML=contents.message_text;
+                document.querySelector('#messages').append(post);
+            }
+            </script>
+
+
     </head>
     <body>
         <h1>
             Welcome {{request.user.username}}
         </h1>
+        <div id="messages">
+
+        </div>
+        <div id="type">
+           
+
+            <form action="{% url 'index' %}" method="POST">
+                {%csrf_token%}
+            <input type="text" placeholder="type your message" name="message" >
+            <input type="submit" value="send">
+                </form>
+
+        </div>
+
         <a href="{% url 'logout' %}">logout </a>
     </body>
 </html>
