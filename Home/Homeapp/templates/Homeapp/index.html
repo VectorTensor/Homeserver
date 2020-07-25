@@ -4,19 +4,51 @@
         <title>
             Message page
         </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <style>
+            #messages{
+                overflow:"scroll"; 
+                height:"400px";
+ 
+            }
+            .box{
+                color:white;
+               background-color: blue;
+               margin:10px;
+               position:relative;
+               padding:10px;
+
+            }
+            .send{
+                padding: 10px;
+                position: absolute;
+                bottom:0px;
+                right: 0px;
+            }
+        </style>
         <script>
             document.addEventListener('DOMContentLoaded',()=>{
                 fetch('/main/getMessage')
                 .then(response=>response.json())
                 .then(data=>{
-                    data.d_messages.forEach(add_messages);
+                    n=data.message.length;
+                    for (i=0;i<n;i++){
+                        const post  = document.createElement('div');
+                        post.setAttribute("class","box");
+                        const u  = document.createElement('div');
+                        u.setAttribute("class","send");
+                        post.innerHTML=data.message[i];
+                        u.innerHTML=data.user[i];
+                        post.append(u)
+                         document.querySelector('#messages').append(post);
+                       
+                    }
+                
 
                 })
             });
             function add_messages(contents){
-                const post  = document.createElement('div');
-                post.innerHTML=contents.message_text;
-                document.querySelector('#messages').append(post);
+               
             }
             </script>
 
