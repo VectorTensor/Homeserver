@@ -15,3 +15,10 @@ Not really a front end guy so the visuals kinda suck
 
 You can create more users by creating it in the admin page
 
+
+steps to run 
+1. Install django 
+2. type command python manage.py runserver
+3. <ip-address>/main
+  
+
